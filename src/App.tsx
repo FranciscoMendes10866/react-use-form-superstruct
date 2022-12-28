@@ -12,10 +12,6 @@ const validationSchema = object({
 type IFormValues = Infer<typeof validationSchema>;
 
 const App = () => {
-  const onSubmit = useCallback((formValues: IFormValues) => {
-    alert(JSON.stringify(formValues));
-  }, []);
-
   const { values, errors, getInputProps, submitForm } = useForm<IFormValues>({
     initialValues: {
       name: "",
@@ -24,6 +20,10 @@ const App = () => {
     },
     validationSchema,
   });
+
+  const onSubmit = useCallback((formValues: IFormValues) => {
+    alert(JSON.stringify(formValues));
+  }, []);
 
   return (
     <section>
