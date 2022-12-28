@@ -52,7 +52,7 @@ export const useForm = <T extends Record<string, any>>({
     _setValues((currentValues) => ({ ...currentValues, [key]: finalValue }));
   }, []);
 
-  const validate = useCallback(() => {
+  const _validate = useCallback(() => {
     try {
       assert(values, validationSchema);
     } catch (error) {
@@ -94,7 +94,7 @@ export const useForm = <T extends Record<string, any>>({
   const submitForm = useCallback(
     (handleSubmit: IHandleSubmit<T>) => (evt: FormEvent) => {
       evt.preventDefault();
-      const validationErrors = validate();
+      const validationErrors = _validate();
       if (Object.keys(validationErrors).length === 0) {
         handleSubmit(values);
         if (resetOnSubmit) reset();
