@@ -16,7 +16,7 @@ interface IGetInputOptions {
   placeholder?: string;
 }
 
-interface IGetInputProps<T> extends IGetInputOptions {
+interface IGetInputProps<T> extends Omit<IGetInputOptions, "includeError"> {
   onChange: (evt: ChangeEvent<unknown>) => void;
   error?: string;
   checked?: boolean;
