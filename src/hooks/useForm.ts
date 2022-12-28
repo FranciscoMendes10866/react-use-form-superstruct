@@ -37,7 +37,7 @@ export const useForm = <T extends Record<string, any>>({
     _setValues(initialValues);
   }, []);
 
-  const setValues = useCallback(({ target }: ChangeEvent<unknown>) => {
+  const _onChange = useCallback(({ target }: ChangeEvent<unknown>) => {
     let finalValue: string | boolean;
     let key: string;
     if (target instanceof HTMLInputElement) {
@@ -76,7 +76,7 @@ export const useForm = <T extends Record<string, any>>({
       name: keyof T,
       { includeError, type = "text", placeholder }: IGetInputOptions = {}
     ) => {
-      const props: IGetInputProps<T> = { onChange: setValues, name };
+      const props: IGetInputProps<T> = { onChange: _onChange, name };
       if (includeError) props.error = errors?.[name];
       if (type === "checkbox") {
         props.checked = values?.[name];
